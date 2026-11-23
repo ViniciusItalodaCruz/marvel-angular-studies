@@ -18,6 +18,6 @@ export class InputSearch {
 
     if (!hasValueForSearch) return;
 
-    await this.router.navigate(['/heroes', valueForSearch]);
+    await this.router.navigate(['/hero', valueForSearch]);
   }
 }
