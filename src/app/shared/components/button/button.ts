@@ -1,4 +1,5 @@
 import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { cn } from '../../utils/cn';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -30,8 +31,9 @@ export class Button {
   variant = input<ButtonVariant>('primary');
   size = input<ButtonSize>('md');
   disabled = input(false, { transform: booleanAttribute });
+  class = input<string>('');
 
   protected hostClasses = computed(() => {
-    return `${BASE_CLASSES} ${VARIANT_CLASSES[this.variant()]} ${SIZE_CLASSES[this.size()]}`;
+    return cn(BASE_CLASSES, VARIANT_CLASSES[this.variant()], SIZE_CLASSES[this.size()], this.class);
   });
 }

@@ -1,0 +1,12 @@
+<form class="flex items-center w-full h-8" (submit)="onSearchHeroes($event, searchInput.value)">
+  <input
+    #searchInput
+    type="text"
+    placeholder="Search your hero..."
+    class="w-full h-full outline-none border-none"
+  />
+
+  <button appButton variant="primary" size="lg" class="rounded-l-none h-full" type="submit">
+    <svg lucideSearch [size]="12" color="white" [strokeWidth]="1" title="Home"></svg>
+  </button>
+</form>
