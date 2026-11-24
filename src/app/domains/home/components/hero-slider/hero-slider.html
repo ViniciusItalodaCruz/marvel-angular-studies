@@ -1,0 +1,55 @@
+@if (activeSlide(); as slide) {
+  <section
+    class="relative isolate flex h-[100vh] w-full items-end overflow-hidden bg-zinc-950 text-white"
+    aria-label="Filmes em destaque"
+  >
+    <img
+      [src]="slide.backdropUrl"
+      alt=""
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+    />
+
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/50 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto w-full max-w-7xl px-6 pb-8 md:px-12 md:pb-12">
+      <h1 class="text-4xl font-bold tracking-tight md:text-7xl">
+        {{ slide.title }}
+      </h1>
+
+      <p class="mt-4 line-clamp-3 max-w-xl text-zinc-200">
+        {{ slide.overview }}
+      </p>
+
+      <app-link [routerLink]="['/filmes', slide.id]" variant="primary" size="md" class="mt-6">
+        Ver detalhes
+      </app-link>
+
+      @if (slides().length > 1) {
+        <div
+          class="mt-6 flex flex-wrap items-center gap-2"
+          role="group"
+          aria-label="Controles do carrossel"
+        >
+          @for (item of slides(); track item.id; let i = $index) {
+            <button
+              type="button"
+              class="grid size-11 place-items-center cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-white"
+              [attr.aria-label]="'Exibir ' + item.title"
+              [attr.aria-current]="activeIndex() === i ? 'true' : null"
+              (click)="selectSlide(i)"
+            >
+              <span
+                class="h-2.5 rounded-full"
+                [class]="activeIndex() === i ? 'w-7 bg-white' : 'w-2.5 bg-white/50'"
+                aria-hidden="true"
+              ></span>
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </section>
+}

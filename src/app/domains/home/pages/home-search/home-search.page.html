@@ -1,5 +1,5 @@
-<section class="grid min-h-dvh place-items-center px-4">
-  <div class="w-full max-w-sm">
-    <app-input-search />
-  </div>
-</section>
+@if (slides$ | async; as slides) {
+  @if (slides.length > 0) {
+    <app-hero-slider [slides]="slides" [intervalMs]="6000" />
+  }
+}
