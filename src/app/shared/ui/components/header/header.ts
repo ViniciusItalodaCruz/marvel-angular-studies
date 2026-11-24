@@ -1,0 +1,43 @@
+import { LucideHeart, LucideMoon, LucideSun } from '@lucide/angular';
+import { afterNextRender, Component, HostListener, signal } from '@angular/core';
+
+import { STORAGE_KEYS } from '@constants/storage';
+import { InputSearch, Link } from '@shared/ui/components';
+
+@Component({
+  imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun],
+  selector: 'app-header',
+  templateUrl: './header.html',
+})
+export class Header {
+  protected readonly isScrolled = signal(false);
+  protected readonly isDarkMode = signal(false);
+
+  constructor() {
+    afterNextRender(() => {
+      this.updateScrollState();
+
+      const theme = localStorage.getItem(STORAGE_KEYS.THEME);
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      this.applyTheme(theme === null ? prefersDark : theme === 'dark');
+    });
+  }
+
+  @HostListener('window:scroll')
+  protected updateScrollState(): void {
+    this.isScrolled.set(window.scrollY > 0);
+  }
+
+  protected toggleTheme(): void {
+    const isDark = !this.isDarkMode();
+
+    this.applyTheme(isDark);
+    localStorage.setItem(STORAGE_KEYS.THEME, isDark ? 'dark' : 'light');
+  }
+
+  private applyTheme(isDark: boolean): void {
+    document.documentElement.classList.toggle('dark', isDark);
+    this.isDarkMode.set(isDark);
+  }
+}

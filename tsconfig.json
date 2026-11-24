@@ -16,7 +16,9 @@
     "paths": {
       "@/*": ["./src/app/*"],
       "@shared/*": ["./src/app/shared/*"],
-      "@domains/*": ["./src/app/domains/*"]
+      "@domains/*": ["./src/app/domains/*"],
+      "@components/*": ["./src/app/shared/ui/components/*"],
+      "@constants/*": ["./src/app/shared/constants/*"]
     }
   },
   "angularCompilerOptions": {

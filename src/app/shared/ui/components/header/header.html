@@ -1,0 +1,28 @@
+<header
+  class="sticky top-0 z-10 transition-colors duration-200"
+  [class.bg-zinc-900/50]="isScrolled()"
+  [class.backdrop-blur-sm]="isScrolled()"
+>
+  <div class="mx-auto w-full container flex items-center justify-between h-16">
+    <app-input-search />
+
+    <div class="flex items-center gap-2">
+      <app-link href="/">
+        <svg lucideHeart [size]="18" color="white" [strokeWidth]="1" title="Favoritos"></svg>
+      </app-link>
+
+      <button
+        type="button"
+        class="grid size-10 cursor-pointer place-items-center rounded-full bg-zinc-900/60 text-white transition-colors hover:bg-zinc-900/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        [attr.aria-label]="isDarkMode() ? 'Modo claro' : 'Modo escuro'"
+        (click)="toggleTheme()"
+      >
+        @if (isDarkMode()) {
+          <svg lucideSun [size]="18" aria-hidden="true"></svg>
+        } @else {
+          <svg lucideMoon [size]="18" aria-hidden="true"></svg>
+        }
+      </button>
+    </div>
+  </div>
+</header>

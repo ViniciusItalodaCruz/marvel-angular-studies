@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { Button } from '../button/button';
-import { LucideSearch } from '@lucide/angular';
 import { Router } from '@angular/router';
+import { LucideSearch } from '@lucide/angular';
+import { Component, inject } from '@angular/core';
+
+import { Button } from '@components/button/button';
 
 @Component({
   imports: [Button, LucideSearch],
@@ -13,11 +14,12 @@ export class InputSearch {
 
   protected async onSearchHeroes(event: Event, value: string): Promise<void> {
     event.preventDefault();
+
     const valueForSearch = value.trim();
     const hasValueForSearch = valueForSearch.length > 0;
 
     if (!hasValueForSearch) return;
 
-    await this.router.navigate(['/hero', valueForSearch]);
+    await this.router.navigate(['/buscar?', `q=${valueForSearch}`]);
   }
 }
