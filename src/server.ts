@@ -41,10 +41,44 @@ app.use(
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
+});
+
+/**
+ * Get trending movies from TMDB
+ */
+app.get('/api/movies/trending', async (_req, res) => {
+  const token = process.env['TMDB_READ_ACCESS_TOKEN'];
+
+  if (!token) {
+    res.status(500).json({ message: 'A integração com o TMDB precisa ser configurada.' });
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      'https://api.themoviedb.org/3/trending/movie/week?language=pt-BR',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+        },
+        signal: AbortSignal.timeout(5_000),
+      },
+    );
+
+    if (!response.ok) {
+      console.error('Falha ao consultar o TMDB', response.status);
+      res.status(502).json({ message: 'Não foi possível carregar os filmes em alta.' });
+      return;
+    }
+
+    res.json(await response.json());
+  } catch (error) {
+    console.error('Falha ao consultar o TMDB', error);
+    res.status(502).json({ message: 'Não foi possível carregar os filmes em alta.' });
+  }
 });
 
 /**
