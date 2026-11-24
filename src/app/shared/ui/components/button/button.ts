@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, computed, input } from '@angular/core';
-import { cn } from '../../utils/cn';
+import { cn } from '@shared/utils/cn';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';

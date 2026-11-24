@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "marvel-angular-studies": {
+    "cineclube": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -25,9 +25,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
@@ -65,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "marvel-angular-studies:build:production"
+              "buildTarget": "cineclube:build:production"
             },
             "development": {
-              "buildTarget": "marvel-angular-studies:build:development"
+              "buildTarget": "cineclube:build:development"
             }
           },
           "defaultConfiguration": "development"

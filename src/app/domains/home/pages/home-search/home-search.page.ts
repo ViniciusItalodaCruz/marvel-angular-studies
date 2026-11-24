@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InputSearch } from '../../../../shared/components/input-search/input-search';
+import { InputSearch } from '@shared/ui/components/input-search/input-search';
 
 @Component({
   imports: [InputSearch],
