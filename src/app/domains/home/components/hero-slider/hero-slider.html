@@ -19,9 +19,11 @@
         {{ slide.title }}
       </h1>
 
-      <p class="mt-4 line-clamp-3 max-w-xl text-zinc-200">
-        {{ slide.overview }}
-      </p>
+      @if (slide.overview) {
+        <p class="mt-4 line-clamp-3 max-w-xl text-zinc-200">
+          {{ slide.overview }}
+        </p>
+      }
 
       <app-link [routerLink]="['/filmes', slide.id]" variant="primary" size="md" class="mt-6">
         Ver detalhes

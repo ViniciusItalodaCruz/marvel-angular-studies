@@ -21,20 +21,17 @@ export class HeroSlider {
   private readonly index = signal(0);
   private readonly browserReady = signal(false);
 
-  readonly paused = signal(false);
-
   readonly activeIndex = computed(() => this.index() % Math.max(this.slides().length, 1));
 
   readonly activeSlide = computed(() => this.slides()[this.activeIndex()]);
 
   constructor() {
     afterNextRender(() => {
-      this.paused.set(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       this.browserReady.set(true);
     });
 
     effect((onCleanup) => {
-      if (!this.browserReady() || this.paused()) return;
+      if (!this.browserReady()) return;
 
       const total = this.slides().length;
       const delay = this.intervalMs();
@@ -50,9 +47,5 @@ export class HeroSlider {
 
   selectSlide(index: number): void {
     this.index.set(index);
-  }
-
-  toggleAutoplay(): void {
-    this.paused.update((paused) => !paused);
   }
 }
