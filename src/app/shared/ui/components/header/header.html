@@ -1,9 +1,11 @@
 <header
-  class="sticky top-0 z-10 transition-colors duration-200"
+  class="fixed inset-x-0 top-0 z-50 transition-colors duration-200"
   [class.bg-zinc-900/50]="isScrolled()"
   [class.backdrop-blur-sm]="isScrolled()"
 >
-  <div class="mx-auto w-full container flex items-center justify-between h-16">
+  <div
+    class="mx-auto w-full container flex items-center gap-4 justify-between h-16 flex-col md:flex-row pt-8 md:pt-0"
+  >
     <app-input-search />
 
     <div class="flex items-center gap-2">

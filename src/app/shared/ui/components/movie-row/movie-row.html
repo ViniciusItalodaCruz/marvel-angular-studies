@@ -1,0 +1,57 @@
+@if (hasMovies()) {
+  <section class="container mx-auto px-4 py-8 text-white" [attr.aria-label]="title()">
+    <div class="mb-4 flex items-center justify-between gap-4">
+      <h2 class="text-2xl text-zinc-900 dark:text-white font-semibold">{{ title() }}</h2>
+
+      @if (hasMoreThanTwoMovies()) {
+        <div
+          class="gap-2"
+          [class]="
+            hasMoreThanFiveMovies()
+              ? 'flex'
+              : hasMoreThanThreeMovies()
+                ? 'flex lg:hidden'
+                : 'flex sm:hidden'
+          "
+        >
+          <button
+            type="button"
+            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700"
+            [attr.aria-label]="'Filme anterior em ' + title()"
+            (click)="move(Direction.Left)"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+
+          <button
+            type="button"
+            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700"
+            [attr.aria-label]="'Próximo filme em ' + title()"
+            (click)="move(Direction.Right)"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      }
+    </div>
+
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      @for (movie of visibleMovies(); track movie.id; let index = $index) {
+        <li [class]="index >= 3 ? 'hidden lg:block' : index === 2 ? 'hidden sm:block' : ''">
+          <a
+            [routerLink]="['/filmes', movie.id]"
+            class="block rounded-lg focus-visible:outline-2 focus-visible:outline-white"
+          >
+            <img
+              [src]="movie.posterUrl"
+              alt=""
+              loading="lazy"
+              class="aspect-[2/3] w-full rounded-lg bg-zinc-800 object-cover"
+            />
+            <p class="mt-2 text-sm text-zinc-900 dark:text-white font-medium">{{ movie.title }}</p>
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+}
