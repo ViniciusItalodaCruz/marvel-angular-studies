@@ -16,7 +16,7 @@
         >
           <button
             type="button"
-            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700"
+            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700 cursor-pointer"
             [attr.aria-label]="'Filme anterior em ' + title()"
             (click)="move(Direction.Left)"
           >
@@ -25,7 +25,7 @@
 
           <button
             type="button"
-            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700"
+            class="size-11 rounded-full bg-zinc-800 hover:bg-zinc-700 cursor-pointer"
             [attr.aria-label]="'Próximo filme em ' + title()"
             (click)="move(Direction.Right)"
           >
@@ -53,5 +53,9 @@
         </li>
       }
     </ul>
+  </section>
+} @else {
+  <section class="container mx-auto px-4 py-8 text-white">
+    <p class="text-zinc-900 dark:text-white">Não há filmes para exibir</p>
   </section>
 }

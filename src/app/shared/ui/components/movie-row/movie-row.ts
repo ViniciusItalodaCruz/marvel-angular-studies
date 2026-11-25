@@ -1,11 +1,6 @@
+import { Movie } from '@/domains/movies/models/movie.types';
 import { Component, computed, input, linkedSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface MovieRowItem {
-  id: number;
-  title: string;
-  posterUrl: string;
-}
 
 const MAX_VISIBLE_MOVIES = 5;
 const INITIAL_START_INDEX = 0;
@@ -24,7 +19,7 @@ export enum Direction {
 export class MovieRow {
   protected readonly Direction = Direction;
   readonly title = input.required<string>();
-  readonly movies = input.required<readonly MovieRowItem[]>();
+  readonly movies = input.required<readonly Movie[]>();
   readonly hasMovies = computed(() => this.movies().length > MIN_MOVIES_COUNT);
   readonly hasMoreThanTwoMovies = computed(() => this.movies().length > MIN_MOVIES_COUNT);
   readonly hasMoreThanFiveMovies = computed(() => this.movies().length > MAX_VISIBLE_MOVIES);

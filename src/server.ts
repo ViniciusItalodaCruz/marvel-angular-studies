@@ -81,6 +81,62 @@ app.get('/api/movies/trending', async (_req, res) => {
   }
 });
 
+interface TmdbMovie {
+  id: number;
+  title: string;
+  poster_path: string | null;
+}
+
+/**
+ * Get now playing movies from TMDB
+ */
+app.get('/api/movies/now-playing', async (_req, res) => {
+  const token = process.env['TMDB_READ_ACCESS_TOKEN'];
+
+  if (!token) {
+    res.status(500).json({
+      message: 'A integração com o TMDB precisa ser configurada.',
+    });
+    return;
+  }
+
+  const url = new URL('https://api.themoviedb.org/3/movie/now_playing');
+  url.search = new URLSearchParams({
+    region: 'BR',
+    language: 'pt-BR',
+    page: '1',
+  }).toString();
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+      signal: AbortSignal.timeout(5_000),
+    });
+
+    if (!response.ok) {
+      console.error('Falha ao consultar filmes em cartaz no TMDB', response.status);
+      res.status(502).json({ message: 'Não foi possível carregar os filmes em cartaz.' });
+      return;
+    }
+
+    const data: { results: TmdbMovie[] } = await response.json();
+
+    res.json({
+      results: data.results.map((movie) => ({
+        id: movie.id,
+        title: movie.title,
+        posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+      })),
+    });
+  } catch (error) {
+    console.error('Falha ao consultar filmes em cartaz no TMDB', error);
+    res.status(502).json({ message: 'Não foi possível carregar os filmes em cartaz.' });
+  }
+});
+
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.

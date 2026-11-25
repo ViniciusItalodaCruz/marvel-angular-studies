@@ -1,14 +1,9 @@
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs';
 
-interface TrendingMovie {
-  id: number;
-  title: string;
-  overview: string;
-  backdrop_path: string | null;
-  poster_path: string | null;
-}
+import { createMovieRowItems } from '../factories/movie-row-item.factory';
+import type { Movie, TrendingMovie } from '../models/movie.types';
 
 interface TrendingMoviesResponse {
   results: TrendingMovie[];
@@ -22,6 +17,10 @@ export class MoviesService {
     return this.http
       .get<TrendingMoviesResponse>('/api/movies/trending')
       .pipe(map(({ results }) => results));
+  }
+
+  getTrendingCards(): Observable<Movie[]> {
+    return this.getTrendingMovies().pipe(map(createMovieRowItems));
   }
 
   getTrendingSlides() {
@@ -38,5 +37,11 @@ export class MoviesService {
           })),
       ),
     );
+  }
+
+  getNowPlayingMovies(): Observable<Movie[]> {
+    return this.http
+      .get<{ results: Movie[] }>('/api/movies/now-playing')
+      .pipe(map(({ results }) => results));
   }
 }

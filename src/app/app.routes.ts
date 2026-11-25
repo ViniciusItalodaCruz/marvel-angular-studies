@@ -1,4 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeSearchPage } from './domains/home/pages/home-search/home-search.page';
+import { LandingPage } from './domains/home/pages/landing-page/lp.page';
 
-export const routes: Routes = [{ path: '', pathMatch: 'full', component: HomeSearchPage }];
+export const routes: Routes = [{ path: '', pathMatch: 'full', component: LandingPage }];

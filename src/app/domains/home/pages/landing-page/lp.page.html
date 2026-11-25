@@ -7,3 +7,7 @@
 @if (movieCards$ | async; as cards) {
   <app-movie-row title="Em alta nesta semana" [movies]="cards" />
 }
+
+@if (nowPlayingMovies$ | async; as movies) {
+  <app-movie-row title="Agora no cinema" [movies]="movies" />
+}
