@@ -2,8 +2,8 @@ import { LucideHeart, LucideMoon, LucideSun } from '@lucide/angular';
 import { afterNextRender, Component, HostListener, signal } from '@angular/core';
 
 import { STORAGE_KEYS } from '@constants/storage';
-import { InputSearch, Link } from '@shared/ui/components';
-
+import { InputSearch } from '../input-search/input-search';
+import { Link } from '../link/link';
 @Component({
   imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun],
   selector: 'app-header',
