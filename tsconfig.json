@@ -18,7 +18,8 @@
       "@shared/*": ["./src/app/shared/*"],
       "@domains/*": ["./src/app/domains/*"],
       "@components/*": ["./src/app/shared/ui/components/*"],
-      "@constants/*": ["./src/app/shared/constants/*"]
+      "@constants/*": ["./src/app/shared/constants/*"],
+      "@entities/*": ["./src/app/entities/*"]
     }
   },
   "angularCompilerOptions": {

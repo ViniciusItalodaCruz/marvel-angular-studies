@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
 
+import type { MovieDetails } from '@entities/movie';
 import { MovieCast } from './components/movie-cast/movie-cast';
 import { MovieHeader } from './components/movie-header/movie-header';
 import { MovieGenres } from './components/movie-genres/movie-genres';
 import { MovieTrailer } from './components/movie-trailer/movie-trailer';
 import { MovieMetadata } from './components/movie-metadata/movie-metadata';
 import { MovieSynopsis } from './components/movie-synopsis/movie-synopsis';
-import type { MovieDetails } from '@/domains/movies/models/movie-details.types';
 import { MovieProduction } from './components/movie-production/movie-production';
 import { MovieWatchProviders } from './components/movie-watch-providers/movie-watch-providers';
 

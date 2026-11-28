@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 
-import type { WatchProvider, WatchProviders } from '@/domains/movies/models/movie-details.types';
+import type { WatchProvider, WatchProviders } from '@entities/movie';
 
 interface WatchProviderGroup {
   label: string;

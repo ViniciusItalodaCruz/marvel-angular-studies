@@ -2,7 +2,7 @@ import { ptBR } from 'date-fns/locale';
 import { format, parseISO } from 'date-fns';
 import { Component, computed, input } from '@angular/core';
 
-import type { MovieDetails } from '@/domains/movies/models/movie-details.types';
+import type { MovieDetails } from '@entities/movie';
 
 @Component({
   selector: 'app-movie-metadata',

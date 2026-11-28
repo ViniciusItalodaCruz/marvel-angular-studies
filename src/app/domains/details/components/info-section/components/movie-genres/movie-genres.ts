@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-import type { Genre } from '@/domains/movies/models/movie-details.types';
+import type { Genre } from '@entities/movie';
 
 @Component({
   selector: 'app-movie-genres',

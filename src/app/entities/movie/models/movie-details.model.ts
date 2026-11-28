@@ -1,3 +1,5 @@
+import type { Genre } from './genre.model';
+
 export interface MovieDetails {
   id: number;
   adult: boolean;
@@ -33,12 +35,6 @@ export interface MovieDetails {
   'watch/providers': WatchProviders;
   release_dates: Results<CountryReleaseDates>;
 }
-
-export interface Genre {
-  id: number;
-  name: string;
-}
-
 export interface MovieCollection {
   id: number;
   name: string;
