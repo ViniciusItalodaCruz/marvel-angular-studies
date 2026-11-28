@@ -1,0 +1,11 @@
+<section class="space-y-3">
+  <h2 class="text-lg font-semibold text-red-400">Sinopse</h2>
+
+  @if (tagline()) {
+    <p class="text-sm italic text-zinc-400 md:text-base">"{{ tagline() }}"</p>
+  }
+
+  <p class="text-sm leading-relaxed text-zinc-200 md:text-base">
+    {{ overview() || 'Sinopse não disponível.' }}
+  </p>
+</section>

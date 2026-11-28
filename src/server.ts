@@ -138,6 +138,79 @@ app.get('/api/movies/now-playing', async (_req, res) => {
 });
 
 /**
+ * Get movie details from TMDB
+ */
+app.get('/api/movies/:id', async (req, res) => {
+  const token = process.env['TMDB_READ_ACCESS_TOKEN'];
+  const { id } = req.params;
+
+  if (!token) {
+    res.status(500).json({
+      message: 'A integração com o TMDB precisa ser configurada.',
+    });
+    return;
+  }
+
+  if (!/^[1-9]\d*$/.test(id)) {
+    res.status(400).json({
+      message: 'ID do filme inválido.',
+    });
+    return;
+  }
+
+  const url = new URL(`https://api.themoviedb.org/3/movie/${id}`);
+
+  url.search = new URLSearchParams({
+    language: 'pt-BR',
+    include_image_language: 'pt,en,null',
+    include_video_language: 'pt,en',
+    append_to_response: [
+      'credits',
+      'videos',
+      'images',
+      'recommendations',
+      'similar',
+      'watch/providers',
+      'release_dates',
+    ].join(','),
+  }).toString();
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+      signal: AbortSignal.timeout(5_000),
+    });
+
+    if (response.status === 404) {
+      res.status(404).json({
+        message: 'Filme não encontrado.',
+      });
+      return;
+    }
+
+    if (!response.ok) {
+      console.error('Falha ao consultar detalhes do filme', response.status);
+
+      res.status(502).json({
+        message: 'Não foi possível carregar os detalhes do filme.',
+      });
+      return;
+    }
+
+    res.json(await response.json());
+  } catch (error) {
+    console.error('Falha ao consultar detalhes do filme', error);
+
+    res.status(502).json({
+      message: 'Não foi possível carregar os detalhes do filme.',
+    });
+  }
+});
+
+/**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */

@@ -1,0 +1,9 @@
+@if (pageData$ | async; as data) {
+  <app-hero-slider [slides]="data.slides" [intervalMs]="6000" />
+
+  <app-movie-row title="Em alta nesta semana" [movies]="data.movieCards" />
+
+  <app-movie-row title="Agora no cinema" [movies]="data.nowPlayingMovies" />
+} @else {
+  <app-loading />
+}

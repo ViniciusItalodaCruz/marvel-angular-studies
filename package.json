@@ -22,6 +22,7 @@
     "@angular/ssr": "^22.3.0",
     "@lucide/angular": "^1.78.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.7.1",

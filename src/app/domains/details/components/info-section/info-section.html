@@ -1,0 +1,17 @@
+<div class="flex min-w-0 flex-1 flex-col gap-6 text-zinc-50">
+  <app-movie-header [title]="movie().title" [originalTitle]="movie().original_title" />
+
+  <app-movie-metadata [movie]="movie()" />
+
+  <app-movie-genres [genres]="movie().genres" />
+
+  <app-movie-synopsis [overview]="movie().overview" [tagline]="movie().tagline" />
+
+  <app-movie-production [movie]="movie()" />
+
+  <app-movie-cast [cast]="movie().credits.cast" [limit]="12" />
+
+  <app-movie-watch-providers [providers]="movie()['watch/providers']" />
+
+  <app-movie-trailer [videos]="movie().videos?.results ?? []" />
+</div>

@@ -39,7 +39,7 @@
       @for (movie of visibleMovies(); track movie.id; let index = $index) {
         <li [class]="index >= 3 ? 'hidden lg:block' : index === 2 ? 'hidden sm:block' : ''">
           <a
-            [routerLink]="['/filmes', movie.id]"
+            [routerLink]="['/filmes', movie.id, 'detalhes']"
             class="block rounded-lg focus-visible:outline-2 focus-visible:outline-white"
           >
             <img

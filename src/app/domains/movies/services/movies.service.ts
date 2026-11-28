@@ -4,6 +4,7 @@ import { inject, Injectable } from '@angular/core';
 
 import { createMovieRowItems } from '../factories/movie-row-item.factory';
 import type { Movie, TrendingMovie } from '../models/movie.types';
+import type { MovieDetails } from '../models/movie-details.types';
 
 interface TrendingMoviesResponse {
   results: TrendingMovie[];
@@ -43,5 +44,9 @@ export class MoviesService {
     return this.http
       .get<{ results: Movie[] }>('/api/movies/now-playing')
       .pipe(map(({ results }) => results));
+  }
+
+  getMovieDetails(id: number): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(`/api/movies/${id}`);
   }
 }

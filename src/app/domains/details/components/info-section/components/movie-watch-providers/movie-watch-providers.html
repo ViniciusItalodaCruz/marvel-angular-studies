@@ -1,0 +1,46 @@
+<section class="space-y-4">
+  <h2 class="text-lg font-semibold text-red-400">Onde assistir</h2>
+
+  @if (watchProviders().length) {
+    <div
+      class="grid gap-5 rounded-xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm sm:grid-cols-2 md:p-5"
+    >
+      @for (group of watchProviders(); track group.label) {
+        <div class="space-y-3">
+          <h3 class="text-sm font-medium text-zinc-300">
+            {{ group.label }}
+          </h3>
+
+          <div class="flex flex-wrap gap-3">
+            @for (provider of group.providers; track provider.provider_id) {
+              <img
+                [src]="'https://image.tmdb.org/t/p/w92' + provider.logo_path"
+                [alt]="provider.provider_name"
+                [title]="provider.provider_name"
+                class="size-12 rounded-xl object-cover md:size-14"
+                loading="lazy"
+              />
+            }
+          </div>
+        </div>
+      }
+
+      @if (countryProviders()?.link; as link) {
+        <a
+          [href]="link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-zinc-300 underline underline-offset-4 hover:text-white sm:col-span-2"
+        >
+          Consultar disponibilidade
+        </a>
+      }
+
+      <p class="text-xs text-zinc-400 sm:col-span-2">
+        Informações de disponibilidade fornecidas por JustWatch.
+      </p>
+    </div>
+  } @else {
+    <p class="text-sm text-zinc-400">Nenhuma plataforma de exibição encontrada para esta região.</p>
+  }
+</section>

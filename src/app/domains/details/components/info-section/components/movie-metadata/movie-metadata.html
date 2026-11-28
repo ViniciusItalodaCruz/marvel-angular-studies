@@ -1,0 +1,27 @@
+<div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-zinc-300">
+  @if (movie().vote_count > 0) {
+    <div class="flex items-center gap-2">
+      <span class="text-lg text-yellow-400">★</span>
+
+      <strong class="text-base text-zinc-50">
+        {{ movie().vote_average.toFixed(1) }}
+      </strong>
+
+      <span>/ 10</span>
+    </div>
+  }
+
+  @if (formattedReleaseDate(); as releaseDate) {
+    <span>{{ releaseDate }}</span>
+  }
+
+  @if (formattedRuntime(); as runtime) {
+    <span>{{ runtime }}</span>
+  }
+
+  @if (certification(); as certification) {
+    <span class="rounded-md border border-zinc-400 px-2 py-1 font-semibold">
+      {{ certification }}
+    </span>
+  }
+</div>

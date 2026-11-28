@@ -1,0 +1,35 @@
+<section
+  class="grid grid-cols-1 gap-x-4 gap-y-5 rounded-xl border border-white/10 bg-black/20 p-4 backdrop-blur-sm sm:grid-cols-2 md:p-5"
+>
+  @if (directors(); as directors) {
+    <div>
+      <h3 class="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-400">Direção</h3>
+
+      <p class="text-sm font-medium">{{ directors }}</p>
+    </div>
+  }
+
+  <div>
+    <h3 class="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-400">Idioma original</h3>
+
+    <p class="text-sm font-medium">{{ originalLanguage() }}</p>
+  </div>
+
+  @if (productionCountries(); as countries) {
+    <div>
+      <h3 class="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-400">
+        País de produção
+      </h3>
+
+      <p class="text-sm font-medium">{{ countries }}</p>
+    </div>
+  }
+
+  @if (productionCompanies(); as companies) {
+    <div>
+      <h3 class="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-400">Produção</h3>
+
+      <p class="text-sm font-medium">{{ companies }}</p>
+    </div>
+  }
+</section>

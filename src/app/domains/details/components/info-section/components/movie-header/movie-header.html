@@ -1,0 +1,17 @@
+<div class="flex flex-col items-start justify-between gap-4 sm:flex-row">
+  <div>
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl">
+      {{ title() }}
+    </h1>
+
+    @if (originalTitle() !== title()) {
+      <p class="mt-2 text-sm text-zinc-400">Título original: {{ originalTitle() }}</p>
+    }
+  </div>
+
+  <button appButton variant="primary" size="sm" class="w-full shrink-0 sm:w-auto" type="button">
+    Favoritar
+
+    <svg lucideHeart [size]="18" color="white" [strokeWidth]="1" title="Favoritar"></svg>
+  </button>
+</div>
