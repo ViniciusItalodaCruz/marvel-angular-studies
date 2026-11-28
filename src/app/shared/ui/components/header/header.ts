@@ -1,8 +1,10 @@
 import { RouterLink } from '@angular/router';
+import { inject } from '@angular/core';
 import { LucideHeart, LucideMoon, LucideSun } from '@lucide/angular';
 import { afterNextRender, Component, HostListener, signal } from '@angular/core';
 
 import { STORAGE_KEYS } from '@constants/storage';
+import { FavoritesStore } from '@/domains/favorites/stores/favorites.store';
 import { InputSearch } from '../input-search/input-search';
 import { Link } from '../link/link';
 import { Logo } from '../logo/logo';
@@ -15,6 +17,8 @@ import { Logo } from '../logo/logo';
 export class Header {
   protected readonly isScrolled = signal(false);
   protected readonly isDarkMode = signal(false);
+  private readonly favoritesStore = inject(FavoritesStore);
+  readonly favoritesCount = this.favoritesStore.count;
 
   constructor() {
     afterNextRender(() => {

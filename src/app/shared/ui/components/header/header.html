@@ -13,8 +13,16 @@
     />
 
     <div class="col-start-2 row-start-1 flex shrink-0 items-center gap-2 md:col-start-3">
-      <app-link [routerLink]="['/favoritos']">
+      <app-link [routerLink]="['/favoritos']" class="relative">
         <svg lucideHeart [size]="18" color="white" [strokeWidth]="1" title="Favoritos"></svg>
+
+        @if (favoritesCount() > 0) {
+          <span
+            class="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold text-red-600"
+          >
+            {{ favoritesCount() > 99 ? '99+' : favoritesCount() }}
+          </span>
+        }
       </app-link>
 
       <button
