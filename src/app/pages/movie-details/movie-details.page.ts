@@ -12,7 +12,7 @@ import { Loading } from '@/shared/ui/components';
   imports: [AsyncPipe, InfoSection, Loading],
   templateUrl: './movie-details.page.html',
 })
-export class MovieDetails {
+export class MovieDetailsPage {
   private readonly route = inject(ActivatedRoute);
   private readonly moviesService = inject(MoviesService);
 

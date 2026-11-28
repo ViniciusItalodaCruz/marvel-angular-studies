@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { LucideHeart, LucideMoon, LucideSun } from '@lucide/angular';
 import { afterNextRender, Component, HostListener, signal } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Link } from '../link/link';
 import { Logo } from '../logo/logo';
 
 @Component({
-  imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun, Logo],
+  imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun, Logo, RouterLink],
   selector: 'app-header',
   templateUrl: './header.html',
 })

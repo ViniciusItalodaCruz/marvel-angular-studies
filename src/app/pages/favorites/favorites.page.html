@@ -1,0 +1,49 @@
+<section class="min-h-dvh bg-zinc-50 pt-36 dark:bg-zinc-950 md:pt-24">
+  <div class="container mx-auto px-4 pb-12">
+    <div class="mb-8 flex items-center justify-between gap-4">
+      <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-4xl">
+        Meus favoritos
+      </h1>
+
+      @if (isReady()) {
+        <span class="text-sm text-zinc-500 dark:text-zinc-400">
+          {{ count() }} {{ count() === 1 ? 'filme' : 'filmes' }}
+        </span>
+      }
+    </div>
+
+    @if (!isReady()) {
+      <p class="text-zinc-500">Carregando favoritos...</p>
+    } @else if (isEmpty()) {
+      <div class="flex min-h-96 flex-col items-center justify-center gap-4 text-center">
+        <div class="grid size-24 place-items-center rounded-full bg-zinc-200 dark:bg-zinc-900">
+          <svg
+            lucideHeart
+            [size]="40"
+            [strokeWidth]="1"
+            class="text-zinc-500"
+            aria-hidden="true"
+          ></svg>
+        </div>
+
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-white">
+          Seus favoritos estão vazios
+        </h2>
+
+        <p class="max-w-sm text-sm text-zinc-500 dark:text-zinc-400">
+          Adicione seus filmes preferidos aos favoritos e encontre todos eles em um só lugar.
+        </p>
+
+        <app-link routerLink="/" variant="primary" size="md" class="mt-2">
+          Explorar filmes
+        </app-link>
+      </div>
+    } @else {
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+        @for (movie of movies(); track movie.id) {
+          <app-favorite-movie-card [movie]="movie" (remove)="removeFavorite($event)" />
+        }
+      </div>
+    }
+  </div>
+</section>
