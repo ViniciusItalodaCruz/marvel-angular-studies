@@ -4,8 +4,10 @@ import { afterNextRender, Component, HostListener, signal } from '@angular/core'
 import { STORAGE_KEYS } from '@constants/storage';
 import { InputSearch } from '../input-search/input-search';
 import { Link } from '../link/link';
+import { Logo } from '../logo/logo';
+
 @Component({
-  imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun],
+  imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun, Logo],
   selector: 'app-header',
   templateUrl: './header.html',
 })
