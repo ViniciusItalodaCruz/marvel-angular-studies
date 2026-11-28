@@ -3,10 +3,9 @@ import { FavoritesStore } from '@/domains/favorites/stores/favorites.store';
 import { LucideHeart } from '@lucide/angular';
 import { RouterLink } from '@angular/router';
 import { Link } from '@/shared/ui/components/link/link';
-import { FavoriteMovieCard } from '@/domains/favorites/components/favorite-movie-card/favorite-movie-card';
-
+import { MovieCard } from '@/shared/ui/components/movie-card/movie-card';
 @Component({
-  imports: [LucideHeart, RouterLink, Link, FavoriteMovieCard],
+  imports: [LucideHeart, RouterLink, Link, MovieCard],
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
 })

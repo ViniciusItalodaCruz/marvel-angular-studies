@@ -12,14 +12,18 @@ import { Button } from '@components/button/button';
 export class InputSearch {
   private readonly router = inject(Router);
 
-  protected async onSearchHeroes(event: Event, value: string): Promise<void> {
+  protected async onSearchMovies(event: Event, value: string): Promise<void> {
     event.preventDefault();
 
-    const valueForSearch = value.trim();
-    const hasValueForSearch = valueForSearch.length > 0;
+    const query = value.trim();
 
-    if (!hasValueForSearch) return;
+    if (!query) return;
 
-    await this.router.navigate(['/buscar?', `q=${valueForSearch}`]);
+    await this.router.navigate(['/busca'], {
+      queryParams: {
+        query,
+        page: 1,
+      },
+    });
   }
 }

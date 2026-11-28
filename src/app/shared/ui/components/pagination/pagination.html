@@ -1,0 +1,31 @@
+@if (totalPages() > 1) {
+  <nav class="flex flex-wrap items-center justify-center gap-4" aria-label="Paginação">
+    <button
+      appButton
+      variant="secondary"
+      size="sm"
+      type="button"
+      [disabled]="!hasPreviousPage()"
+      (click)="previous()"
+    >
+      <svg lucideChevronLeft [size]="18" aria-hidden="true"></svg>
+      Anterior
+    </button>
+
+    <span class="text-sm font-medium text-zinc-600 dark:text-zinc-300">
+      {{ page() }} de {{ totalPages() }}
+    </span>
+
+    <button
+      appButton
+      variant="secondary"
+      size="sm"
+      type="button"
+      [disabled]="!hasNextPage()"
+      (click)="next()"
+    >
+      Próxima
+      <svg lucideChevronRight [size]="18" aria-hidden="true"></svg>
+    </button>
+  </nav>
+}

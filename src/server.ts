@@ -137,6 +137,92 @@ app.get('/api/movies/now-playing', async (_req, res) => {
   }
 });
 
+interface TmdbSearchResponse {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: TmdbMovie[];
+}
+
+/**
+ * Search movies from TMDB
+ */
+app.get('/api/movies/search', async (req, res) => {
+  const token = process.env['TMDB_READ_ACCESS_TOKEN'];
+
+  const query = typeof req.query['query'] === 'string' ? req.query['query'].trim() : '';
+
+  const page = Number(req.query['page'] ?? 1);
+
+  if (!token) {
+    res.status(500).json({
+      message: 'A integração com o TMDB precisa ser configurada.',
+    });
+    return;
+  }
+
+  if (!query) {
+    res.status(400).json({
+      message: 'Informe um termo para realizar a busca.',
+    });
+    return;
+  }
+
+  if (!Number.isInteger(page) || page < 1 || page > 500) {
+    res.status(400).json({
+      message: 'Página inválida.',
+    });
+    return;
+  }
+
+  const url = new URL('https://api.themoviedb.org/3/search/movie');
+
+  url.search = new URLSearchParams({
+    query,
+    page: String(page),
+    language: 'pt-BR',
+    include_adult: 'false',
+  }).toString();
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+      signal: AbortSignal.timeout(5_000),
+    });
+
+    if (!response.ok) {
+      console.error('Falha ao buscar filmes no TMDB', response.status);
+
+      res.status(502).json({
+        message: 'Não foi possível realizar a busca.',
+      });
+      return;
+    }
+
+    const data: TmdbSearchResponse = await response.json();
+
+    res.json({
+      page: data.page,
+      totalPages: Math.min(data.total_pages, 500),
+      totalResults: data.total_results,
+      results: data.results.map((movie) => ({
+        id: movie.id,
+        title: movie.title,
+        posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+      })),
+    });
+  } catch (error) {
+    console.error('Falha ao buscar filmes no TMDB', error);
+
+    res.status(502).json({
+      message: 'Não foi possível realizar a busca.',
+    });
+  }
+});
+
 /**
  * Get movie details from TMDB
  */

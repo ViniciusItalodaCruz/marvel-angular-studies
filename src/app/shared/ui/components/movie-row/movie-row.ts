@@ -1,6 +1,7 @@
 import { Movie } from '@/domains/movies/models/movie.types';
 import { Component, computed, input, linkedSignal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
+import { MovieCard } from '@components/movie-card/movie-card';
 
 const MAX_VISIBLE_MOVIES = 5;
 const INITIAL_START_INDEX = 0;
@@ -13,7 +14,7 @@ export enum Direction {
 
 @Component({
   selector: 'app-movie-row',
-  imports: [RouterLink],
+  imports: [MovieCard],
   templateUrl: './movie-row.html',
 })
 export class MovieRow {

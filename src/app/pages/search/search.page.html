@@ -1,0 +1,61 @@
+<section class="min-h-dvh bg-zinc-50 pt-36 dark:bg-zinc-950 md:pt-24">
+  <div class="container mx-auto px-4 pb-12">
+    <h1 class="mb-8 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white md:text-4xl">
+      Resultados da busca
+    </h1>
+
+    @if (search$ | async; as search) {
+      @switch (search.status) {
+        @case ('idle') {
+          <p class="text-zinc-500 dark:text-zinc-400">Informe o nome de um filme para começar.</p>
+        }
+
+        @case ('loading') {
+          <p class="animate-pulse text-zinc-500 dark:text-zinc-400">Buscando filmes...</p>
+        }
+
+        @case ('error') {
+          <div class="flex min-h-96 flex-col items-center justify-center gap-3 text-center">
+            <h2 class="text-xl font-semibold text-zinc-900 dark:text-white">
+              Não foi possível realizar a busca
+            </h2>
+
+            <p class="text-sm text-zinc-500 dark:text-zinc-400">
+              Ocorreu um erro ao buscar os filmes. Tente novamente.
+            </p>
+          </div>
+        }
+
+        @case ('success') {
+          @if (search.data.results.length === 0) {
+            <div class="flex min-h-96 flex-col items-center justify-center gap-3 text-center">
+              <h2 class="text-xl font-semibold text-zinc-900 dark:text-white">
+                Nenhum filme encontrado
+              </h2>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                Não encontramos resultados para "{{ search.query }}".
+              </p>
+            </div>
+          } @else {
+            <p class="mb-6 text-sm text-zinc-500 dark:text-zinc-400">
+              {{ search.data.totalResults }} resultados para "{{ search.query }}"
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+              @for (movie of search.data.results; track movie.id) {
+                <app-movie-card [movie]="movie" />
+              }
+            </div>
+
+            <app-pagination
+              [page]="search.data.page"
+              [totalPages]="search.data.totalPages"
+              (pageChange)="changePage($event)"
+            />
+          }
+        }
+      }
+    }
+  </div>
+</section>

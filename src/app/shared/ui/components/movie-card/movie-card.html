@@ -1,0 +1,36 @@
+<article class="group relative overflow-hidden rounded-xl bg-zinc-200 dark:bg-zinc-900">
+  <a [routerLink]="['/filmes', movie().id, 'detalhes']" class="relative block overflow-hidden">
+    @if (movie().posterUrl; as posterUrl) {
+      <img
+        [src]="posterUrl"
+        alt=""
+        loading="lazy"
+        class="aspect-2/3 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+    } @else {
+      <div class="grid aspect-2/3 place-items-center text-zinc-500">
+        <svg lucideFilm [size]="48" [strokeWidth]="1" aria-hidden="true"></svg>
+      </div>
+    }
+
+    <div
+      class="pointer-events-none absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <p class="absolute inset-x-0 bottom-0 p-4 text-sm font-semibold text-white md:text-base">
+      <span class="line-clamp-2">{{ movie().title }}</span>
+    </p>
+  </a>
+
+  @if (removable()) {
+    <button
+      type="button"
+      class="absolute top-2 right-2 grid size-10 cursor-pointer place-items-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-colors hover:bg-red-600"
+      [attr.aria-label]="'Remover ' + movie().title + ' dos favoritos'"
+      (click)="remove.emit(movie().id)"
+    >
+      <svg lucideTrash [size]="18" [strokeWidth]="1.5" aria-hidden="true"></svg>
+    </button>
+  }
+</article>

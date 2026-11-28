@@ -10,6 +10,13 @@ interface TrendingMoviesResponse {
   results: TrendingMovie[];
 }
 
+export interface SearchMoviesResponse {
+  page: number;
+  totalPages: number;
+  totalResults: number;
+  results: Movie[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   private readonly http = inject(HttpClient);
@@ -48,5 +55,14 @@ export class MoviesService {
 
   getMovieDetails(id: number): Observable<MovieDetails> {
     return this.http.get<MovieDetails>(`/api/movies/${id}`);
+  }
+
+  searchMovies(query: string, page = 1): Observable<SearchMoviesResponse> {
+    return this.http.get<SearchMoviesResponse>('/api/movies/search', {
+      params: {
+        query,
+        page,
+      },
+    });
   }
 }
