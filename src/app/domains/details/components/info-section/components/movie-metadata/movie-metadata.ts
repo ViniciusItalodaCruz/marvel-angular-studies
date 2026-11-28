@@ -1,7 +1,8 @@
-import type { MovieDetails } from '@/domains/movies/models/movie-details.types';
-import { Component, computed, input } from '@angular/core';
-import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { format, parseISO } from 'date-fns';
+import { Component, computed, input } from '@angular/core';
+
+import type { MovieDetails } from '@/domains/movies/models/movie-details.types';
 
 @Component({
   selector: 'app-movie-metadata',

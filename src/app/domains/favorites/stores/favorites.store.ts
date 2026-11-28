@@ -1,8 +1,8 @@
 import { afterNextRender, computed, Injectable, signal } from '@angular/core';
 
-import { FavoriteMovie } from '../models/favorite-movie.model';
 import { STORAGE_KEYS } from '@/shared/constants/storage';
-import { isFavoriteMovie } from '../utils/is-favorite';
+import { isFavoriteMovie } from '../utils/is-favorite-movie';
+import { FavoriteMovie } from '../models/favorite-movie.model';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesStore {

@@ -1,6 +1,6 @@
-import { Movie } from '@/domains/movies/models/movie.types';
 import { Component, computed, input, linkedSignal } from '@angular/core';
 
+import { Movie } from '@/domains/movies/models/movie.types';
 import { MovieCard } from '@components/movie-card/movie-card';
 
 const MAX_VISIBLE_MOVIES = 5;

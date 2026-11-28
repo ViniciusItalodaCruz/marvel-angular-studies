@@ -1,4 +1,5 @@
 import { booleanAttribute, Component, computed, input } from '@angular/core';
+
 import { cn } from '@shared/utils/cn';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline';

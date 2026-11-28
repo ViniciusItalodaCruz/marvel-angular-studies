@@ -1,5 +1,6 @@
-import type { Cast } from '@/domains/movies/models/movie-details.types';
 import { Component, computed, input } from '@angular/core';
+
+import type { Cast } from '@/domains/movies/models/movie-details.types';
 
 @Component({
   selector: 'app-movie-cast',

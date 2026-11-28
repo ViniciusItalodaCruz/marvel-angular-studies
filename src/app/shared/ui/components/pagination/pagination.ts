@@ -1,5 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { LucideChevronLeft, LucideChevronRight } from '@lucide/angular';
+
 import { Button } from '@components/button/button';
 
 @Component({

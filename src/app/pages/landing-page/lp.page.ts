@@ -1,6 +1,6 @@
+import { forkJoin } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { forkJoin } from 'rxjs';
 
 import { Loading, MovieRow } from '@shared/ui/components';
 import { MoviesService } from '@/domains/movies/services/movies.service';

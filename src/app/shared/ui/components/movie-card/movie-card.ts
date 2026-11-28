@@ -1,5 +1,5 @@
-import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Component, input, output } from '@angular/core';
 import { LucideFilm, LucideTrash } from '@lucide/angular';
 
 import { Movie } from '@/domains/movies/models/movie.types';

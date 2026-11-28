@@ -1,13 +1,12 @@
 import { RouterLink } from '@angular/router';
-import { inject } from '@angular/core';
 import { LucideHeart, LucideMoon, LucideSun } from '@lucide/angular';
-import { afterNextRender, Component, HostListener, signal } from '@angular/core';
+import { afterNextRender, Component, HostListener, signal, inject } from '@angular/core';
 
-import { STORAGE_KEYS } from '@constants/storage';
-import { FavoritesStore } from '@/domains/favorites/stores/favorites.store';
-import { InputSearch } from '../input-search/input-search';
 import { Link } from '../link/link';
 import { Logo } from '../logo/logo';
+import { STORAGE_KEYS } from '@constants/storage';
+import { InputSearch } from '../input-search/input-search';
+import { FavoritesStore } from '@/domains/favorites/stores/favorites.store';
 
 @Component({
   imports: [InputSearch, Link, LucideHeart, LucideMoon, LucideSun, Logo, RouterLink],

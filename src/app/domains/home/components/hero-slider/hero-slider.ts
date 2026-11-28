@@ -1,7 +1,7 @@
-import { Link } from '@/shared/ui/components/link/link';
-import { afterNextRender, Component, computed, effect, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { afterNextRender, Component, computed, effect, input, signal } from '@angular/core';
 
+import { Link } from '@/shared/ui/components/link/link';
 interface HeroSlide {
   id: number;
   title: string;

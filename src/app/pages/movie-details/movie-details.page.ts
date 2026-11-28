@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { distinctUntilChanged, map, switchMap } from 'rxjs';
 
-import { MoviesService } from '@/domains/movies/services/movies.service';
-import { InfoSection } from '@/domains/details/components';
 import { Loading } from '@/shared/ui/components';
+import { InfoSection } from '@/domains/details/components';
+import { MoviesService } from '@/domains/movies/services/movies.service';
 
 @Component({
   selector: 'app-movie-details',

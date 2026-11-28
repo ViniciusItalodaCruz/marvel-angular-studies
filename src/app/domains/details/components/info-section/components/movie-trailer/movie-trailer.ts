@@ -1,5 +1,6 @@
-import type { MovieVideo } from '@/domains/movies/models/movie-details.types';
 import { Component, computed, input } from '@angular/core';
+
+import type { MovieVideo } from '@/domains/movies/models/movie-details.types';
 
 @Component({
   selector: 'app-movie-trailer',

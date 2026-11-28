@@ -2,9 +2,9 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { createMovieRowItems } from '../factories/movie-row-item.factory';
 import type { Movie, TrendingMovie } from '../models/movie.types';
 import type { MovieDetails } from '../models/movie-details.types';
+import { createMovieRowItems } from '../factories/movie-row-item.factory';
 
 interface TrendingMoviesResponse {
   results: TrendingMovie[];

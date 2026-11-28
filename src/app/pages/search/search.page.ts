@@ -1,7 +1,8 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
 import { distinctUntilChanged, map, of, switchMap, startWith, catchError, Observable } from 'rxjs';
+
 import { Pagination } from '@components/pagination/pagination';
 import { MoviesService } from '@/domains/movies/services/movies.service';
 import { SearchState } from '@/domains/movies/models/search-state.types';

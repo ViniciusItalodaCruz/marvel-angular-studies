@@ -1,5 +1,6 @@
-import { Component, computed, inject, input } from '@angular/core';
 import { LucideHeart } from '@lucide/angular';
+import { Component, computed, inject, input } from '@angular/core';
+
 import { Button } from '@/shared/ui/components/button/button';
 import { FavoritesStore } from '@/domains/favorites/stores/favorites.store';
 import { createFavoriteMovie } from '@/domains/favorites/factories/favorite-movie.factory';
