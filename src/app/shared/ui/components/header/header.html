@@ -4,21 +4,22 @@
   [class.backdrop-blur-sm]="isScrolled()"
 >
   <div
-    class="mx-auto w-full container flex items-center gap-4 justify-between h-16 flex-col md:flex-row pt-8 md:pt-0"
+    class="container mx-auto grid w-full grid-cols-[1fr_auto] items-center gap-3 px-4 py-3 md:grid-cols-[auto_minmax(0,1fr)_auto] md:h-16 md:py-0"
   >
-    <div class="flex items-center gap-4">
-      <app-logo />
-      <app-input-search />
-    </div>
+    <app-logo />
 
-    <div class="flex items-center gap-2">
+    <app-input-search
+      class="col-span-2 row-start-2 block w-full min-w-0 md:col-span-1 md:row-start-1 md:max-w-sm"
+    />
+
+    <div class="col-start-2 row-start-1 flex shrink-0 items-center gap-2 md:col-start-3">
       <app-link href="/">
         <svg lucideHeart [size]="18" color="white" [strokeWidth]="1" title="Favoritos"></svg>
       </app-link>
 
       <button
         type="button"
-        class="grid size-10 cursor-pointer place-items-center rounded-full bg-zinc-900/60 text-white transition-colors hover:bg-zinc-900/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        class="grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-zinc-900/60 text-white transition-colors hover:bg-zinc-900/80"
         [attr.aria-label]="isDarkMode() ? 'Modo claro' : 'Modo escuro'"
         (click)="toggleTheme()"
       >
