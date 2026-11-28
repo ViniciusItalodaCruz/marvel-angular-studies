@@ -9,9 +9,24 @@
     }
   </div>
 
-  <button appButton variant="primary" size="sm" class="w-full shrink-0 sm:w-auto" type="button">
-    Favoritar
+  <button
+    appButton
+    variant="primary"
+    size="sm"
+    class="w-full shrink-0 sm:w-auto"
+    type="button"
+    [disabled]="!isReady()"
+    [attr.aria-pressed]="isFavorite()"
+    (click)="toggleFavorite()"
+  >
+    {{ isFavorite() ? 'Favoritado' : 'Favoritar' }}
 
-    <svg lucideHeart [size]="18" color="white" [strokeWidth]="1" title="Favoritar"></svg>
+    <svg
+      lucideHeart
+      [size]="18"
+      [strokeWidth]="1"
+      [attr.fill]="isFavorite() ? 'currentColor' : 'none'"
+      aria-hidden="true"
+    ></svg>
   </button>
 </div>

@@ -1,6 +1,10 @@
 <div class="flex min-w-0 flex-1 flex-col gap-6 text-zinc-50">
-  <app-movie-header [title]="movie().title" [originalTitle]="movie().original_title" />
-
+  <app-movie-header
+    [id]="movie().id"
+    [title]="movie().title"
+    [originalTitle]="movie().original_title"
+    [posterPath]="movie().poster_path"
+  />
   <app-movie-metadata [movie]="movie()" />
 
   <app-movie-genres [genres]="movie().genres" />
